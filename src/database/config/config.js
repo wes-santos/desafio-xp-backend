@@ -15,9 +15,17 @@ const options = {
   }
 };
 
+const devOptions = {
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB_NAME,
+  host: process.env.HOSTNAME,
+  dialect: 'mysql',
+}
+
 module.exports = {
   development: {
-    ...options,
+    ...devOptions,
   },
   test: {
     ...options,
