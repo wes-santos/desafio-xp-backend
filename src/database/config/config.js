@@ -1,16 +1,28 @@
 require('dotenv').config();
 
 const options = {
-  username: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'root',
-  database: process.env.MYSQL_DB_NAME ||'desafio_xp_backend',
-  host: process.env.HOSTNAME || '127.0.0.1',
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB_NAME,
+  host: process.env.HOSTNAME,
   port: process.env.DB_PORT,
-  dialect: 'postgres',
+  dialect: process.env.DIALECT,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 };
 
 module.exports = {
   development: {
+    ...options,
+  },
+  test: {
+    ...options,
+  },
+  production: {
     ...options,
   }
 };
